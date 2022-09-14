@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" > <!--took out the s for http-->
+<suite name="GoogleSuite" verbose="1"  parallel="false">
+
+    <parameter name="useCloudEnv" value="false"/>
+    <parameter name="cloudEnvName" value="browserstack"/>
+    <parameter name="os" value="windows"/>
+    <parameter name="os_version" value="10"></parameter>
+    <!--<parameter name="OS X" value="chrome-options"/>-->
+    <parameter name="browser" value="chrome"></parameter>
+    <parameter name="browserVersion" value="104"></parameter>
+    <parameter name="URL" value="https://www.google.com/"></parameter>
+
+
+
+    <test name="GoogleTests">
+
+
+        <classes>
+            <class name="GoogleTest.TestGoogle"></class>
+        </classes>
+    </test>
+
+    <!--Can I put the same test here but with a different Browser set up??? -->
+
+</suite>

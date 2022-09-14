@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="CNNSuite" parallel="false">
+
+    <parameter name="useCloudEnv" value="false"/>
+    <parameter name="cloudEnvName" value="browserstack"/>
+    <parameter name="os" value="windows"/>
+    <parameter name="os_version" value="10"></parameter>
+   <!-- <parameter name="OS X" value="chrome-options"/>-->
+    <parameter name="browser" value="firefox"></parameter>
+    <parameter name="browserVersion" value="103"/>
+    <parameter name="URL" value="https://edition.cnn.com/"></parameter>
+
+    <test name="CnnTests">
+
+        <classes>
+         <class name="CNNTest.TestCNN"></class>
+        </classes>
+    </test>
+
+
+    <!--Can I put the same test here but with a different Browser set up??? -->
+
+
+
+
+
+
+</suite>

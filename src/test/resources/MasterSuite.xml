@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="MasterTestSuites">
+
+<!--Something is missing here -->
+
+
+    <test name="ForAmazon">
+        <parameter name="useCloudEnv" value="false"/>
+        <parameter name="cloudEnvName" value="browserstack"/>
+        <parameter name="os" value="windows"/>
+        <parameter name="os_version" value="10"></parameter>
+        <!--<parameter name="OS X" value="chrome-options"/>-->
+        <parameter name="browser" value="firefox"></parameter>
+        <parameter name="browserVersion" value="103"/>
+        <parameter name="URL" value="https://www.amazon.com/"></parameter>
+        <classes>
+            <class name="AmazonTest.TestAmazon"></class>
+        </classes>
+    </test>
+
+    <test name="ForCNN">
+        <parameter name="useCloudEnv" value="false"/>
+        <parameter name="cloudEnvName" value="browserstack"/>
+        <parameter name="os" value="windows"/>
+        <parameter name="os_version" value="10"></parameter>
+        <!-- <parameter name="OS X" value="chrome-options"/>-->
+        <parameter name="browser" value="firefox"></parameter>
+        <parameter name="browserVersion" value="103"/>
+        <parameter name="URL" value="https://edition.cnn.com/"></parameter>
+        <classes>
+            <class name="CNNTest.TestCNN"></class>
+        </classes>
+    </test>
+
+    <test name="ForGoogle">
+        <parameter name="useCloudEnv" value="false"/>
+        <parameter name="cloudEnvName" value="browserstack"/>
+        <parameter name="os" value="windows"/>
+        <parameter name="os_version" value="10"></parameter>
+        <!--<parameter name="OS X" value="chrome-options"/>-->
+        <parameter name="browser" value="chrome"></parameter>
+        <parameter name="browserVersion" value="104"></parameter>
+        <parameter name="URL" value="https://www.google.com/"></parameter>
+        <classes>
+            <class name="GoogleTest.TestGoogle"></class>
+        </classes>
+    </test>
+</suite>
