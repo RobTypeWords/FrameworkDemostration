@@ -1,9 +1,8 @@
 package Reporting;
 
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.reporter.ExtentSparkReporter;
-import com.aventstack.extentreports.reporter.configuration.Theme;
+
+
+import com.relevantcodes.extentreports.ExtentReports;
 import org.testng.ITestContext;
 import org.testng.Reporter;
 
@@ -11,9 +10,27 @@ import java.io.File;
 
 public class ExtentManager {
 
+    private static ExtentReports extent;
+    private static ITestContext context;
+    String box  = System.getProperty("user.dir") + "\\ExtentReporter\\Results.html";
+
+    public synchronized static ExtentReports getInstance(){
+        if(extent == null){
+           // File outputDirectory = new File(context.getOutputDirectory());
+            //File resultDirectory = new File(outputDirectory.getParentFile(),"html");
+
+
+            extent = new ExtentReports(System.getProperty("user.dir") + "\\ExtentReporter\\Results.html",true);
+
+
+        }
+        return extent;
 
 
 
 
+
+
+}
 
 }

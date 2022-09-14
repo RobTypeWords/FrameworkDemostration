@@ -1,7 +1,7 @@
 package base;
 
 import Reporting.ExtentManager;
-import com.aventstack.extentreports.ExtentReports;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -22,19 +22,19 @@ import java.util.concurrent.TimeUnit;
 public class Common {
 
     // Extent Set up!!!!!!!!!!!!!!!!!1
-public static ExtentReports extent;
-    @BeforeSuite
-    public void extentSetup(){
-    extent = ExtentManager.getInstance();
+//public static ExtentReports extent;
+   // @BeforeSuite
+   // public void extentSetup(){
+   // extent = ExtentManager.getInstance();
 
-    }
+    //}
 
     // Extent close!!!!!!!!!!!!!!!!!!!!!!!
-    @AfterSuite
-    public void CloseExtent(){
+    //@AfterSuite
+    //public void CloseExtent(){
 
-        extent.flush(); //Dont know if this is right?!
-    }
+       // extent.flush(); //Dont know if this is right?!
+   // }
 
     public static WebDriver DRIVER = null; // The static may cause an issue for Parallel execution
 
