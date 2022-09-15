@@ -5,6 +5,7 @@ import Reporting.ExtentManager;
 import Reporting.ExtentTestManager;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.LogStatus;
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -35,7 +36,6 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 
-
 public class Common {
 
     public static ExtentReports extent;
@@ -63,8 +63,6 @@ public class Common {
 
     @AfterMethod
     public void afterEachTestMethod(ITestResult result) {
-        // Time is missing
-
         ExtentTestManager.getTest().getTest().setStartedTime(getTime(result.getStartMillis()));
         ExtentTestManager.getTest().getTest().setEndedTime(getTime(result.getEndMillis()));
         for (String group : result.getMethod().getGroups()) {
@@ -83,7 +81,7 @@ public class Common {
         if (result.getStatus() == ITestResult.FAILURE) {
             captureScreenshot(DRIVER, result.getName());
         }
-        DRIVER.quit();
+        // DRIVER.quit(); // Issue here!!!!!!!!!!!!!!!!
     }
 
     @AfterSuite
@@ -101,10 +99,10 @@ public class Common {
 
     public static WebDriver DRIVER = null; // The static may cause an issue for Parallel execution
 
-    //TBA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
     public String username = "robtypewords_zw7xaQ";//
     public String accesskey = "jVf5fVrsN7yqkvCTo1zr";
-    // I could use the properties file instead
+
 
     @Parameters({"useCloudEnv", "cloudEnvName", "os", "os_version", "browser", "BrowserVersion", "URL"})
     @BeforeMethod
@@ -114,7 +112,7 @@ public class Common {
 
         System.out.println("Being used: " + " " + useCloudEnv + " " + cloudEnvname + " " + os + " " + os_version + " " + " " + browser + " " + browserVersion + " " + url);
 
-        // Here: Implement cloud logic. If theres no cloud testing the default should get the local driver then
+
         if (useCloudEnv == true) {
             if (cloudEnvname.equalsIgnoreCase("browserstack")) {
 
@@ -147,25 +145,25 @@ public class Common {
         return DRIVER;
     }
 
-    //New here!!!!!
+
     public WebDriver GetCloudDriver(String envName, String envUsername, String envKey, String os, String os_version, String browser,
                                     String browserVersion) throws IOException {
 
         System.out.println("Cloud Driver Parameters being passed: " + envName + " " + envUsername + " " + envKey + " " +
                 os + " " + os_version + " " + browser + " " + browserVersion);
 
-        //Configuration setup Remote Driver for Cloud environment
+
         DesiredCapabilities cap = new DesiredCapabilities();
         cap.setCapability("browser", browser);
         cap.setCapability("browserVersion", browserVersion); //Having this name causes issues
         cap.setCapability("os", os);
         cap.setCapability("os_version", os_version);
         cap.setCapability("browserstack.idleTimeout", 5); // Does this solve the idle sessions?
-        cap.setCapability("resolution", "1024x768"); // NEW!!!!!!!!!!!1
+        cap.setCapability("resolution", "1024x768");
 
-        // If I had multiple cloud testing environment
+
         if (envName.equalsIgnoreCase("browserstack")) {
-            // Remote Driver Creation
+
 
             try {
                 DRIVER = new RemoteWebDriver(new URL(("http://") + envUsername + ":" + envKey +
@@ -193,14 +191,12 @@ public class Common {
 
         File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         try {
-            //FileUtils.copyFile(file, new File(System.getProperty("user.dir") + "/screenshots/" + screenshotName + " " + df.format(date) + ".png"));
+            FileUtils.copyFile(file, new File(System.getProperty("user.dir") + "/screenshots/" + screenshotName + " " + df.format(date) + ".png"));
             System.out.println("Screenshot captured");
         } catch (Exception e) {
             System.out.println("Exception while taking screenshot " + e.getMessage());
             ;
         }
-
-
 
 
     }
