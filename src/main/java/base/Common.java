@@ -47,7 +47,7 @@ public class Common {
     }
 
     @BeforeMethod
-    public void startExtent(Method method) { // Dont know if its the right class
+    public void startExtent(Method method) { 
         String className = method.getDeclaringClass().getSimpleName();
         String methodName = method.getName().toLowerCase();
         ExtentTestManager.startTest(method.getName());
@@ -81,7 +81,7 @@ public class Common {
         if (result.getStatus() == ITestResult.FAILURE) {
             captureScreenshot(DRIVER, result.getName());
         }
-        // DRIVER.quit(); // Issue here!!!!!!!!!!!!!!!!
+        // DRIVER.quit(); // Fix needed here
     }
 
     @AfterSuite
@@ -97,7 +97,7 @@ public class Common {
     }
 
 
-    public static WebDriver DRIVER = null; // The static may cause an issue for Parallel execution
+    public static WebDriver DRIVER = null; // Fixed needed here
 
 
     public String username = "robtypewords_zw7xaQ";//
@@ -119,7 +119,7 @@ public class Common {
                 GetCloudDriver(cloudEnvname, username, accesskey, os, os_version, browser, browserVersion);
             }
         } else {
-            getdriver(os, browser); // This should allow mr to remove the else condition below
+            getdriver(os, browser);
         }
         DRIVER.get(url);
         DRIVER.manage().window().fullscreen();
@@ -155,10 +155,10 @@ public class Common {
 
         DesiredCapabilities cap = new DesiredCapabilities();
         cap.setCapability("browser", browser);
-        cap.setCapability("browserVersion", browserVersion); //Having this name causes issues
+        cap.setCapability("browserVersion", browserVersion);
         cap.setCapability("os", os);
         cap.setCapability("os_version", os_version);
-        cap.setCapability("browserstack.idleTimeout", 5); // Does this solve the idle sessions?
+        cap.setCapability("browserstack.idleTimeout", 5); //Fix needed here
         cap.setCapability("resolution", "1024x768");
 
 
